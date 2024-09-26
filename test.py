@@ -8,13 +8,16 @@ uri = os.environ.get("DATABASE_URL")
 
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi('1'))
+db = client["test"]
+collection = db["movies"]
 
 # Send a ping to confirm a successful connection
 try:
     client.admin.command('ping')
     print("Pinged your deployment. You successfully connected to MongoDB!")
-    query = {'release_year': 2021}
-    client.movies = collection.find(query)
+    query = {'title': 'the'}
+    movies = collection.find(query)
+    print([i for i in movies])
 
 except Exception as e:
     print(e)
