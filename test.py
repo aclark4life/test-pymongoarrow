@@ -15,7 +15,8 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 try:
     client.admin.command('ping')
     print("Pinged your deployment. You successfully connected to MongoDB!")
-    console.
+    query = {'release_year': 2021}
+    client.movies = collection.find(query)
 
 except Exception as e:
     print(e)
