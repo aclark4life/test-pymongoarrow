@@ -1,6 +1,3 @@
-# Install pymongoarrow if you haven't already
-# pip install pymongoarrow
-
 import pymongo
 from pymongoarrow.api import Schema
 from pymongoarrow.monkey import patch_all
