@@ -4,8 +4,6 @@ from pymongo.server_api import ServerApi
 
 import os
 
-import console
-
 uri = os.environ.get("DATABASE_URL")
 
 # Create a new client and connect to the server
