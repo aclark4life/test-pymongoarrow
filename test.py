@@ -1,9 +1,13 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
+import code
 import os
+import readline
+import rlcompleter  # noqa
 
 uri = os.environ.get("DATABASE_URL")
+readfunc = readline.parse_and_bind("tab: complete")
 
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi("1"))
@@ -15,3 +19,5 @@ try:
 
 except Exception as e:
     print(e)
+
+code.interact(local=globals(), readfunc=readfunc)
