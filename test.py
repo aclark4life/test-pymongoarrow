@@ -1,5 +1,7 @@
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from pymongoarrow.api import Schema
+from pymongoarrow.monkey import patch_all
 
 import code
 import os
@@ -20,5 +22,14 @@ try:
 
 except Exception as e:
     print(e)
+
+sample_mflix = client["sample_mflix"]
+movies = sample_mflix["embedded_movies"]
+
+patch_all()  # add PyMongoArrow functionality directly to Collection instances
+
+schema = Schema({"_id": int})
+data_frame = movies.find_pandas_all({}, schema=schema)
+arrow_table = movies.find_arrow_all({})
 
 code.interact(local=globals(), readfunc=readfunc)
