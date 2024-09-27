@@ -1,4 +1,3 @@
-
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
@@ -15,9 +14,6 @@ collection = db["movies"]
 try:
     client.admin.command('ping')
     print("Pinged your deployment. You successfully connected to MongoDB!")
-    query = {'title': 'the'}
-    movies = collection.find(query)
-    print([i for i in movies])
 
 except Exception as e:
     print(e)
