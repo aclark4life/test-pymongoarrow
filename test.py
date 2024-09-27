@@ -10,7 +10,6 @@ import rlcompleter  # noqa
 
 # DATABASE_URL = "mongodb+srv://<u>:<p>@<srv>.mongodb.net"
 uri = os.environ.get("DATABASE_URL")
-readfunc = readline.parse_and_bind("tab: complete")
 
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi("1"))
@@ -32,4 +31,5 @@ schema = Schema({"_id": int})
 data_frame = movies.find_pandas_all({}, schema=schema)
 arrow_table = movies.find_arrow_all({})
 
+readfunc = readline.parse_and_bind("tab: complete")
 code.interact(local=globals(), readfunc=readfunc)
