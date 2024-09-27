@@ -5,3 +5,6 @@
 
 test:
 	python test.py
+
+edit:
+	$(EDITOR) test.py
