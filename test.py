@@ -6,7 +6,7 @@ import os
 import readline
 import rlcompleter  # noqa
 
-# DATABASE_URL = "mongodb+srv://<u>:<p>@db_host.mongodb.net"
+# DATABASE_URL = "mongodb+srv://<u>:<p>@<srv>.mongodb.net"
 uri = os.environ.get("DATABASE_URL")
 readfunc = readline.parse_and_bind("tab: complete")
 
