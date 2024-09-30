@@ -25,14 +25,18 @@ try:
 except Exception as e:
     print(e)
 
-sample_mflix = client["sample_mflix"]
-movies = sample_mflix["embedded_movies"]
+sample_mflix = client["test"]
+movies = sample_mflix["movies"]
 
 patch_all()  # add PyMongoArrow functionality directly to Collection instances
 
 # Check the current number of movies
 current_count = movies.count_documents({})
 target_count = 8000000
+
+print(current_count)
+
+exit()
 
 if current_count < target_count:
     # Calculate the number of movies to copy
