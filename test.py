@@ -36,8 +36,6 @@ target_count = 8000000
 
 print(current_count)
 
-exit()
-
 if current_count < target_count:
     # Calculate the number of movies to copy
     movies_to_copy = target_count - current_count
