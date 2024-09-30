@@ -11,7 +11,8 @@ import rlcompleter  # noqa
 from bson.objectid import ObjectId
 
 # DATABASE_URL = "mongodb+srv://<u>:<p>@<srv>.mongodb.net"
-uri = os.environ.get("DATABASE_URL")
+# uri = os.environ.get("DATABASE_URL")
+uri = "mongodb://localhost:27017"
 
 # Create a new client and connect to the server
 client = MongoClient(uri, server_api=ServerApi("1"))
