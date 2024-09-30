@@ -5,7 +5,7 @@ from pymongoarrow.monkey import patch_all
 
 import code
 import os
-import pymongo  # noqa
+import pymongo
 import readline
 import rlcompleter  # noqa
 from bson.objectid import ObjectId
@@ -14,33 +14,24 @@ from bson.objectid import ObjectId
 uri = os.environ.get("DATABASE_URL")
 
 # Create a new client and connect to the server
-atlas_client = MongoClient(uri, server_api=ServerApi("1"))
-
-uri = "mongodb://localhost:27017"
-local_client = MongoClient(uri)
+client = MongoClient(uri, server_api=ServerApi("1"))
 
 # Send a ping to confirm a successful connection
 try:
-    atlas_client.admin.command("ping")
+    client.admin.command("ping")
     print("Pinged your deployment. You successfully connected to MongoDB!")
-    local_client.admin.command("ping")
-    print("Pinged your local deployment. You successfully connected to local MongoDB!")
 
 except Exception as e:
     print(e)
 
-sample_mflix = atlas_client["sample_mflix"]
+sample_mflix = client["sample_mflix"]
 movies = sample_mflix["embedded_movies"]
-
-local_sample_mflix = local_client["sample_mflix"]
-local_movies = local_sample_mflix["embedded_movies"]
 
 patch_all()  # add PyMongoArrow functionality directly to Collection instances
 
 # Check the current number of movies
 current_count = movies.count_documents({})
-# target_count = 8000000
-target_count = 8000
+target_count = 8000000
 
 if current_count < target_count:
     # Calculate the number of movies to copy
@@ -57,7 +48,6 @@ if current_count < target_count:
 
         try:
             movies.insert_many(all_movies[:movies_to_copy])
-            local_movies.insert_many(all_movies[:movies_to_copy])
             current_count += len(all_movies[:movies_to_copy])
             print(
                 f"Inserted {len(all_movies[:movies_to_copy])} movies. Current count: {current_count}"
