@@ -42,6 +42,7 @@ if current_count < target_count:
 
     # Fetch all movies
     all_movies = list(movies.find())
+    print(f"Total movies: {len(all_movies)}")
 
     # Insert movies until the target count is reached
     while current_count < target_count:
@@ -61,7 +62,11 @@ if current_count < target_count:
 
 schema = Schema({"_id": int})
 data_frame = movies.find_pandas_all({}, schema=schema)
-arrow_table = movies.find_arrow_all({})
+
+# arrow_table = movies.find_arrow_all({})
+# Pinged your deployment. You successfully connected to MongoDB!
+# 8003260
+# make: *** [test] Segmentation fault: 11
 
 readfunc = readline.parse_and_bind("tab: complete")
 code.interact(local=globals(), readfunc=readfunc)
