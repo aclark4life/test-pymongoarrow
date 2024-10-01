@@ -62,11 +62,6 @@ if current_count < target_count:
 
 schema = Schema({"_id": int})
 data_frame = movies.find_pandas_all({}, schema=schema)
-
-arrow_table = movies.find_arrow_all({})
-# Pinged your deployment. You successfully connected to MongoDB!
-# 8003260
-# make: *** [test] Segmentation fault: 11
-
+arrow_table = movies.find_arrow_all({}, schema=schema)
 readfunc = readline.parse_and_bind("tab: complete")
 code.interact(local=globals(), readfunc=readfunc)
